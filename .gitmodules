@@ -1,3 +1,6 @@
 [submodule "neslib"]
 	path = neslib
 	url = https://github.com/clbr/neslib
+[submodule "01_Hello"]
+	path = 01_Hello
+	url = https://github.com/nesdoug/01_Hello

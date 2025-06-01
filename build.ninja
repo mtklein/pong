@@ -8,6 +8,9 @@ rule compile
     deps    = gcc
 
 rule link
-    command = $cc -o $out -C $config $in
+    command = $cc -o $out -C $in
 
-build out/crt0.o: compile neslib/crt0.s
+build out/crt0.o:   compile neslib/crt0.s
+build out/chars.o:  compile chars.s
+build out/pong.o:   compile pong.c
+build out/pong.nes: link pong.cfg out/crt0.o out/chars.o out/pong.o
