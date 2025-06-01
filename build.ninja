@@ -1,0 +1,13 @@
+builddir = out
+
+cc = cl65 -t nes
+
+rule compile
+    command = $cc -o $out --create-dep $out.d -O -c $in
+    depfile = $out.d
+    deps    = gcc
+
+rule link
+    command = $cc -o $out -C $config $in
+
+build out/crt0.o: compile neslib/crt0.s
