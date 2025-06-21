@@ -132,7 +132,7 @@ void main(void) {
             if (p1_col_idx >= P1_COLOR_COUNT) p1_col_idx = 0;
             set_player_palette(1);
         }
-        if (t2 & PAD_SELECT) {
+        if ((t1 & PAD_START) || (t2 & PAD_SELECT)) {
             ++p2_col_idx;
             if (p2_col_idx >= P2_COLOR_COUNT) p2_col_idx = 0;
             set_player_palette(2);
@@ -140,8 +140,8 @@ void main(void) {
 
         if (pad1 & PAD_UP   && paddle_l.y > 16)                paddle_l.y -= 2;
         if (pad1 & PAD_DOWN && paddle_l.y < 224 - 16)          paddle_l.y += 2;
-        if (pad2 & PAD_UP   && paddle_r.y > 16)                paddle_r.y -= 2;
-        if (pad2 & PAD_DOWN && paddle_r.y < 224 - 16)          paddle_r.y += 2;
+        if ((pad2 & PAD_UP   || pad1 & PAD_B)  && paddle_r.y > 16)        paddle_r.y -= 2;
+        if ((pad2 & PAD_DOWN || pad1 & PAD_A)  && paddle_r.y < 224 - 16)  paddle_r.y += 2;
 
         ball.x += ball_vx;
         ball.y += ball_vy;
