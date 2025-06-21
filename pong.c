@@ -55,6 +55,12 @@ static void reset_ball(signed char dir) {
 static void show_winner(byte player) {
     const char *msg = player == 1 ? p1_win : p2_win;
     byte i = 0;
+
+    /* draw the final score so the screen shows the winning value */
+    oam_off = 0;
+    draw_score();
+    oam_hide_rest(oam_off);
+
     ppu_off();
     vram_adr(NTADR_A(12, 14));
     while (msg[i]) {
@@ -62,7 +68,8 @@ static void show_winner(byte player) {
         ++i;
     }
     ppu_on_all();
-    while (1) ppu_wait_nmi();
+    while (1)
+        ppu_wait_nmi();
 }
 
 static void check_winner(void) {
