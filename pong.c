@@ -4,6 +4,7 @@ typedef unsigned char byte;
 #pragma  bss-name(push, "ZEROPAGE")
 #pragma data-name(push, "ZEROPAGE")
 byte oam_off;
+// TODO: Initialize sprite OAM for paddle and ball
 #pragma data-name(pop)
 #pragma  bss-name(pop)
 
@@ -13,6 +14,7 @@ static const byte palette[16] = {
     0,0,0,0,
     0,0,0,0,
 };
+// TODO: Customize palette for game visuals
 
 static byte vram_update[] = {
     MSB(NTADR_A(10,14)) | NT_UPD_HORZ,
@@ -33,6 +35,7 @@ void main(void) {
     ppu_on_all();
 
     while (1) {
+        // TODO: Implement paddle and ball movement logic
         if (++frame_mod == 60) {
             frame_mod = 0;
         }
