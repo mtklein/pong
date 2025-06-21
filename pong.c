@@ -25,13 +25,6 @@ static const byte palette[16] = {
     0,0,0,0,
 };
 
-static byte vram_update[] = {
-    MSB(NTADR_A(10,14)) | NT_UPD_HORZ,
-    LSB(NTADR_A(10,14)),
-    11,
-    'H', 'e', 'l', 'l', 'o',  ' ',  'P', 'i', 'n', 'g',  '!',
-    NT_UPD_EOF,
-};
 
 void main(void) {
     ppu_off();
@@ -42,11 +35,9 @@ void main(void) {
     ball.x = 120;     ball.y = 120;
     ball_vx = 1;      ball_vy = 1;
 
-    set_vram_update(vram_update);
     oam_clear();
     ppu_on_all();
     ppu_wait_nmi();
-    set_vram_update(NULL);
 
     while (1) {
         pad1 = pad_poll(0);
