@@ -62,14 +62,26 @@ void main(void) {
         if (ball_vx < 0) {
             if (ball.x <= paddle_l.x + 8 &&
                 ball.y + 4 >= paddle_l.y && ball.y <= paddle_l.y + 16) {
+                signed char diff = (ball.y + 4) - (paddle_l.y + 8);
                 ball_vx = -ball_vx;
                 ball.x = paddle_l.x + 8;
+                ball_vy = diff >> 2;
+                if (!ball_vy) {
+                    if (diff > 0) ball_vy = 1;
+                    else if (diff < 0) ball_vy = -1;
+                }
             }
         } else {
             if (ball.x + 8 >= paddle_r.x &&
                 ball.y + 4 >= paddle_r.y && ball.y <= paddle_r.y + 16) {
+                signed char diff = (ball.y + 4) - (paddle_r.y + 8);
                 ball_vx = -ball_vx;
                 ball.x = paddle_r.x - 8;
+                ball_vy = diff >> 2;
+                if (!ball_vy) {
+                    if (diff > 0) ball_vy = 1;
+                    else if (diff < 0) ball_vy = -1;
+                }
             }
         }
 
