@@ -86,8 +86,7 @@ static void show_winner(byte player) {
         oam_off = 0;
         draw_score();
         for(i=0; msg[i]; ++i) {
-            byte attr = attr_normal;
-            if(i < 2 || msg[i] == '!') attr = attr_pulse;
+            byte attr = (msg[i] != ' ') ? attr_pulse : attr_normal;
             oam_off = oam_spr(96 + i*8, 120, msg[i], attr, oam_off);
         }
         oam_hide_rest(oam_off);
