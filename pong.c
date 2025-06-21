@@ -122,10 +122,10 @@ void main(void) {
 
     while (1) {
         byte t1, t2;
-        pad1 = pad_poll(0);
-        pad2 = pad_poll(1);
         t1 = pad_trigger(0);
         t2 = pad_trigger(1);
+        pad1 = pad_state(0);
+        pad2 = pad_state(1);
 
         if (t1 & PAD_SELECT) {
             ++p1_col_idx;
